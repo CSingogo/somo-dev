@@ -1,0 +1,73 @@
+# CI/CD for somo-dev — SSH deploy to VPS (PM2 + nginx)
+#
+# No container registry is required for this setup.
+# Image registries (Azure ACR, GHCR, Docker Hub) are only needed if you
+# deploy Docker images. This workflow builds on the VPS after git pull.
+#
+# Required GitHub repository secrets:
+#   VPS_HOST      — your VPS IP or hostname
+#   VPS_USER      — SSH user (e.g. root or deploy)
+#   VPS_SSH_KEY   — private SSH key (full PEM contents)
+#   VPS_APP_PATH  — optional; defaults to /var/www/somo-dev
+
+name: CI / Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Lint & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Build
+        run: bun run build
+        env:
+          NODE_ENV: production
+
+  deploy:
+    name: Deploy to VPS
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          VPS_APP_PATH: ${{ secrets.VPS_APP_PATH }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: VPS_APP_PATH
+          script_stop: true
+          script: |
+            set -euo pipefail
+            APP_PATH="${VPS_APP_PATH:-/var/www/somo-dev}"
+            cd "$APP_PATH"
+            git fetch origin main
+            git reset --hard origin/main
+            chmod +x scripts/deploy.sh
+            ./scripts/deploy.sh
