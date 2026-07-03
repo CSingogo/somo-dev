@@ -20,12 +20,10 @@ fi
 bun install --frozen-lockfile
 bun run build
 
-if pm2 describe somo-dev >/dev/null 2>&1; then
-  pm2 restart somo-dev --update-env
-else
-  pm2 start ecosystem.config.cjs
-fi
+# Delete and recreate so PM2 picks up ecosystem changes (e.g. port, fork mode)
+pm2 delete somo-dev 2>/dev/null || true
+pm2 start ecosystem.config.cjs
 
 pm2 save
 
-echo "→ Deploy complete. somo-dev is running on port ${PORT:-3000}"
+echo "→ Deploy complete. somo-dev is running on port 3001"
