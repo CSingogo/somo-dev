@@ -2,18 +2,32 @@
 # Run on the VPS after git pull. Installs deps, builds, and restarts PM2.
 set -euo pipefail
 
+# GitHub Actions SSH sessions are non-interactive and often skip shell profiles.
+if [ -f "$HOME/.profile" ]; then
+  set +u
+  # shellcheck disable=SC1091
+  . "$HOME/.profile"
+  set -u
+fi
+
+export PATH="$HOME/.bun/bin:$HOME/.local/bin:$HOME/.npm-global/bin:/usr/local/bin:$PATH"
+
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$APP_DIR"
 
 echo "→ Deploying somo-dev in ${APP_DIR}"
 
 if ! command -v bun >/dev/null 2>&1; then
-  echo "Error: bun is not installed on this server."
+  echo "Error: bun is not installed or not on PATH."
+  echo "PATH=${PATH}"
+  echo "Install on the VPS: curl -fsSL https://bun.sh/install | bash"
   exit 1
 fi
 
 if ! command -v pm2 >/dev/null 2>&1; then
-  echo "Error: pm2 is not installed on this server."
+  echo "Error: pm2 is not installed or not on PATH."
+  echo "PATH=${PATH}"
+  echo "Install on the VPS: npm install -g pm2"
   exit 1
 fi
 

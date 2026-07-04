@@ -65,6 +65,7 @@ jobs:
           script_stop: true
           script: |
             set -euo pipefail
+            export PATH="$HOME/.bun/bin:$HOME/.local/bin:$HOME/.npm-global/bin:/usr/local/bin:$PATH"
             APP_PATH="${VPS_APP_PATH:-/var/www/somo-dev}"
             cd "$APP_PATH"
             git fetch origin main
