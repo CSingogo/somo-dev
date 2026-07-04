@@ -2,10 +2,19 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { ScrollProgressBar } from "@/components/grace-hymns/scroll-progress-bar";
+import { graceHymnsConfig, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Grace Hymns",
-  description: "Privacy Policy for the Grace Hymns mobile application.",
+  title: "Privacy Policy",
+  description: `Privacy Policy for the ${graceHymnsConfig.name} mobile application.`,
+  alternates: {
+    canonical: "/grace-hymns/privacy-policy",
+  },
+  openGraph: {
+    title: `Privacy Policy — ${graceHymnsConfig.name}`,
+    description: `Privacy Policy for the ${graceHymnsConfig.name} mobile application.`,
+    url: `${siteUrl}/grace-hymns/privacy-policy`,
+  },
 };
 
 function SectionHeading({ children }: { children: React.ReactNode }) {

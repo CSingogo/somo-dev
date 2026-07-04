@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import { Source_Serif_4, Work_Sans, JetBrains_Mono } from "next/font/google";
+import { graceHymnsConfig, siteUrl } from "@/lib/site";
+
+const ogImage = {
+  url: "/og-grace-hymns.png",
+  width: 1024,
+  height: 1024,
+  alt: `${graceHymnsConfig.name} — A Modern Sanctuary for Devotion`,
+};
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
@@ -17,9 +25,32 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Grace Hymns — A Modern Sanctuary for Devotion",
-  description:
-    "Browse, search, and save your favorite hymns. A Firestore-powered mobile hymnbook for iOS and Android.",
+  title: `${graceHymnsConfig.name} — A Modern Sanctuary for Devotion`,
+  description: graceHymnsConfig.description,
+  keywords: [
+    "Grace Hymns",
+    "hymnbook app",
+    "hymns",
+    "Christian hymns",
+    "offline hymnbook",
+    "iOS",
+    "Android",
+  ],
+  openGraph: {
+    title: `${graceHymnsConfig.name} — A Modern Sanctuary for Devotion`,
+    description: graceHymnsConfig.shortDescription,
+    url: `${siteUrl}/grace-hymns/home`,
+    type: "website",
+    images: [ogImage],
+  },
+  twitter: {
+    title: `${graceHymnsConfig.name} — A Modern Sanctuary for Devotion`,
+    description: graceHymnsConfig.shortDescription,
+    images: [ogImage.url],
+  },
+  alternates: {
+    canonical: "/grace-hymns/home",
+  },
 };
 
 export default function GraceHymnsLayout({
