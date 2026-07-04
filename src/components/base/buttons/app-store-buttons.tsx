@@ -3,7 +3,7 @@
 import type { AnchorHTMLAttributes } from "react";
 import { cx } from "@/lib/utils/cx";
 
-export const GooglePlayButton = ({ size = "md", ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { size?: "md" | "lg" }) => {
+export const GooglePlayButton = (props: AnchorHTMLAttributes<HTMLAnchorElement> & { size?: "md" | "lg" }) => {
     return (
         <a
             aria-label="Get it on Google Play"
@@ -153,7 +153,7 @@ export const GooglePlayButton = ({ size = "md", ...props }: AnchorHTMLAttributes
     );
 };
 
-export const GooglePlayWhiteButton = ({ size = "md", ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { size?: "md" | "lg" }) => {
+export const GooglePlayWhiteButton = (props: AnchorHTMLAttributes<HTMLAnchorElement> & { size?: "md" | "lg" }) => {
     return (
         <a
             aria-label="Get it on Google Play"
@@ -229,7 +229,7 @@ export const GooglePlayWhiteButton = ({ size = "md", ...props }: AnchorHTMLAttri
     );
 };
 
-export const AppStoreButton = ({ size = "md", ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { size?: "md" | "lg" }) => {
+export const AppStoreButton = (props: AnchorHTMLAttributes<HTMLAnchorElement> & { size?: "md" | "lg" }) => {
     return (
         <a
             aria-label="Download on the App Store"

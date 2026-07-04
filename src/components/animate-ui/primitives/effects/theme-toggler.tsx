@@ -55,10 +55,6 @@ function ThemeToggler({
   children,
   ...props
 }: ThemeTogglerProps) {
-  const [preview, setPreview] = React.useState<null | {
-    effective: ThemeSelection;
-    resolved: Resolved;
-  }>(null);
   const [current, setCurrent] = React.useState<{
     effective: ThemeSelection;
     resolved: Resolved;
@@ -66,16 +62,6 @@ function ThemeToggler({
     effective: theme,
     resolved: resolvedTheme,
   });
-
-  React.useEffect(() => {
-    if (
-      preview &&
-      theme === preview.effective &&
-      resolvedTheme === preview.resolved
-    ) {
-      setPreview(null);
-    }
-  }, [theme, resolvedTheme, preview]);
 
   const [fromClip, toClip] = getClipKeyframes(direction);
 
@@ -93,7 +79,7 @@ function ThemeToggler({
 
       if (!document.startViewTransition) {
         flushSync(() => {
-          setPreview({ effective: theme, resolved });
+          setCurrent({ effective: theme, resolved });
         });
         setTheme(theme);
         return;
@@ -101,7 +87,7 @@ function ThemeToggler({
 
       await document.startViewTransition(() => {
         flushSync(() => {
-          setPreview({ effective: theme, resolved });
+          setCurrent({ effective: theme, resolved });
           document.documentElement.classList.toggle(
             'dark',
             resolved === 'dark',

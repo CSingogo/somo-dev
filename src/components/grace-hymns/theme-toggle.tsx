@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import {
@@ -17,13 +17,17 @@ function getNextTheme(current: ThemeSelection): ThemeSelection {
 const toggleButtonClass =
   "flex size-9 items-center justify-center rounded-full border border-gh-outline-variant/60 transition-colors hover:bg-gh-surface-container-low dark:border-neutral-800 dark:hover:bg-neutral-900";
 
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function GraceHymnsThemeToggle({ className }: { className?: string }) {
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   if (!mounted) {
     return (
