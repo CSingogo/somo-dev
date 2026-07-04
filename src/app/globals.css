@@ -195,6 +195,61 @@
   width: 100%;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.grace-hymns-theme .gh-store-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.grace-hymns-theme .gh-store-buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  height: 4.5rem;
+}
+
+.grace-hymns-theme .gh-store-buttons svg {
+  height: 3rem;
+  width: auto;
+  max-width: 12.5rem;
+}
+
+@media (min-width: 640px) {
+  .grace-hymns-theme .gh-store-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grace-hymns-theme .gh-store-buttons a {
+    height: 3.75rem;
+  }
+
+  .grace-hymns-theme .gh-store-buttons svg {
+    height: 2.75rem;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .grace-hymns-theme .gh-store-buttons svg {
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grace-hymns-theme .gh-store-buttons svg {
+    height: 3.25rem;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

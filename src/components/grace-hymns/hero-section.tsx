@@ -8,9 +8,6 @@ import {
 } from "@/components/base/buttons/app-store-buttons";
 import { Zap, FileText } from "lucide-react";
 
-const storeBadgeClass =
-  "inline-flex shrink-0 [&_svg]:h-10 [&_svg]:w-auto sm:[&_svg]:h-11 md:[&_svg]:h-12 lg:[&_svg]:h-[52px]";
-
 export function HeroSection() {
   return (
     <section className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-8 sm:px-6 md:grid-cols-12 md:gap-8 md:px-12 md:py-0 lg:gap-10 lg:px-20">
@@ -26,9 +23,9 @@ export function HeroSection() {
           Engineering spiritual continuity through a high-fidelity hymnbook
           experience. Built with technical precision for the believer.
         </p>
-        <div className="mb-6 flex flex-col gap-3 sm:mb-7 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mb-8">
-          <GooglePlayButton size="lg" href="#" className={storeBadgeClass} />
-          <AppStoreButton size="lg" href="#" className={storeBadgeClass} />
+        <div className="gh-store-buttons mb-6 sm:mb-7 md:mb-8">
+          <GooglePlayButton size="lg" href="#" />
+          <AppStoreButton size="lg" href="#" />
         </div>
         <div className="grid max-w-md grid-cols-2 gap-x-6 gap-y-4 border-t border-gh-outline-variant pt-6 sm:gap-x-8 sm:pt-8">
           <div className="flex items-center gap-3">

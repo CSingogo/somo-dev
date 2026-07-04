@@ -134,7 +134,6 @@ function ThemeToggler({
             toggleTheme,
           })
         : children}
-      <style>{`::view-transition-old(root), ::view-transition-new(root){animation:none;mix-blend-mode:normal;}`}</style>
     </React.Fragment>
   );
 }

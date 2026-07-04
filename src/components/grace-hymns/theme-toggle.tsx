@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import {
@@ -13,8 +14,27 @@ function getNextTheme(current: ThemeSelection): ThemeSelection {
   return current === "light" ? "dark" : "light";
 }
 
+const toggleButtonClass =
+  "flex size-9 items-center justify-center rounded-full border border-gh-outline-variant/60 transition-colors hover:bg-gh-surface-container-low dark:border-neutral-800 dark:hover:bg-neutral-900";
+
 export function GraceHymnsThemeToggle({ className }: { className?: string }) {
   const { theme, resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        type="button"
+        aria-label="Toggle theme"
+        className={cn(toggleButtonClass, className)}
+        suppressHydrationWarning
+      />
+    );
+  }
 
   return (
     <ThemeTogglerPrimitive
@@ -29,10 +49,7 @@ export function GraceHymnsThemeToggle({ className }: { className?: string }) {
           <button
             type="button"
             aria-label="Toggle theme"
-            className={cn(
-              "flex size-9 items-center justify-center rounded-full border border-gh-outline-variant/60 transition-colors hover:bg-gh-surface-container-low dark:border-neutral-800 dark:hover:bg-neutral-900",
-              className,
-            )}
+            className={cn(toggleButtonClass, className)}
             onClick={() => toggleTheme(getNextTheme(effective))}
           >
             {display === "dark" ? (
