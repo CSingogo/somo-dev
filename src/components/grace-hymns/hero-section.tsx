@@ -10,24 +10,24 @@ import { Zap, FileText } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-8 sm:px-6 md:grid-cols-12 md:gap-8 md:px-12 md:py-0 lg:gap-10 lg:px-20">
+    <section className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-8 sm:px-6 md:grid-cols-12 md:items-center md:gap-4 md:px-10 md:py-2 lg:gap-6 lg:px-16 lg:py-4">
       <div className="md:col-span-5 lg:col-span-5">
-        <h1 className="mb-4 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-gh-on-background sm:mb-5 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
+        <h1 className="mb-4 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-gh-on-background sm:mb-5 sm:text-4xl md:mb-5 md:text-[2.75rem] lg:mb-6 lg:text-5xl xl:text-6xl">
           A Modern{" "}
           <i className="font-normal italic text-gh-primary-container">
             Sanctuary
           </i>{" "}
           for Devotion.
         </h1>
-        <p className="mb-6 max-w-md text-sm font-light leading-relaxed text-gh-secondary sm:mb-7 sm:text-base md:mb-8 md:text-lg">
+        <p className="mb-6 max-w-md text-sm font-light leading-relaxed text-gh-secondary sm:mb-7 sm:text-base md:mb-6 md:text-base lg:mb-8 lg:text-lg">
           Engineering spiritual continuity through a high-fidelity hymnbook
           experience. Built with technical precision for the believer.
         </p>
-        <div className="gh-store-buttons mb-6 sm:mb-7 md:mb-8">
+        <div className="gh-store-buttons mb-6 sm:mb-7 md:mb-6 lg:mb-8">
           <GooglePlayButton size="lg" href="#" />
           <AppStoreButton size="lg" href="#" />
         </div>
-        <div className="grid max-w-md grid-cols-2 gap-x-6 gap-y-4 border-t border-gh-outline-variant pt-6 sm:gap-x-8 sm:pt-8">
+        <div className="grid max-w-md grid-cols-2 gap-x-6 gap-y-4 border-t border-gh-outline-variant pt-6 sm:gap-x-8 sm:pt-8 md:pt-6">
           <div className="flex items-center gap-3">
             <Zap
               className="h-5 w-5 shrink-0 text-gh-primary-container"
@@ -51,7 +51,7 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
-      <div className="flex justify-center md:col-span-7 lg:col-span-7">
+      <div className="flex justify-center md:col-span-7 md:justify-end lg:col-span-7 lg:justify-center">
         <ScreenshotCarousel />
       </div>
     </section>

@@ -37,7 +37,7 @@ export default function GraceHymnsHomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="flex min-h-0 flex-1 items-center overflow-x-hidden overflow-y-auto md:overflow-hidden">
+      <main className="flex min-h-0 flex-1 items-center overflow-x-hidden overflow-y-auto md:overflow-y-auto">
         <HeroSection />
       </main>
     </>

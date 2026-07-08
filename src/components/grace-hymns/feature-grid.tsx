@@ -9,7 +9,7 @@ const features = [
     number: "02",
     title: "Cloud Infrastructure",
     description:
-      "Real-time synchronization powered by Firestore keeps your library uniform across all devices.",
+      "Cloud-delivered catalog updates keep hymns current without exposing personal data on our servers.",
   },
   {
     number: "03",

@@ -51,10 +51,10 @@ export default function PrivacyPolicyPage() {
             </h1>
             <div className="flex flex-wrap items-center gap-3">
               <span className="rounded border border-gh-outline-variant/30 bg-gh-surface-container-low px-3 py-1 font-[family-name:var(--font-jetbrains-mono)] text-[13px] text-gh-on-surface-variant">
-                VERSION 1.0.4
+                VERSION 1.0.0
               </span>
               <p className="text-base italic text-gh-secondary">
-                Last updated: July 2, 2026
+                Last updated: July 8, 2026
               </p>
             </div>
           </header>
@@ -115,12 +115,12 @@ export default function PrivacyPolicyPage() {
                   {
                     letter: "c",
                     title: "Hymn Catalog Data",
-                    text: "Hymn content (titles, lyrics, numbers, categories) is fetched from our Firebase Firestore database. This is public hymn catalog data, not personal information.",
+                    text: "Hymn content (titles, lyrics, numbers, categories) is delivered from our cloud-hosted catalog. This is public hymn data, not personal information.",
                   },
                   {
                     letter: "d",
                     title: "Locally Stored Preferences",
-                    text: "Favorites and dark mode preferences are stored locally on your device using AsyncStorage. This data never leaves your device unless you choose to share hymn text via the native share sheet.",
+                    text: "Favorites and dark mode preferences are stored locally on your device. This data never leaves your device unless you choose to share hymn text via the native share sheet.",
                   },
                 ].map((item) => (
                   <div key={item.letter} className="flex items-start gap-4">
@@ -143,12 +143,13 @@ export default function PrivacyPolicyPage() {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="rounded border border-gh-outline-variant/30 p-6">
                   <h3 className="mb-3 font-serif text-2xl font-semibold text-gh-on-background">
-                    Google Firebase
+                    Cloud Infrastructure
                   </h3>
                   <p className="text-base text-gh-secondary">
-                    We utilize Firebase for backend content delivery. While we do
-                    not collect personal data, Google may collect technical
-                    identifiers as part of their service delivery.
+                    Hymn catalog content is served through our cloud
+                    infrastructure. We do not collect personal data for this
+                    purpose; hosting providers may process limited technical
+                    diagnostics required to keep the service available.
                   </p>
                 </div>
                 <div className="rounded border border-gh-outline-variant/30 p-6">

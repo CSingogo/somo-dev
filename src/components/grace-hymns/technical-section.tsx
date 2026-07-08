@@ -1,6 +1,6 @@
 const specs = [
   { label: "Core Framework", value: "React Native" },
-  { label: "Cloud Services", value: "Firebase Firestore" },
+  { label: "Cloud Services", value: "Managed Cloud API" },
   { label: "Navigation", value: "Expo Router" },
   { label: "State Engine", value: "Zustand Management" },
 ];
