@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -22,7 +20,7 @@ const screenshots = [
   },
 ];
 
-export function ScreenshotCarousel() {
+export default function ScreenshotCarousel() {
   const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState<boolean[]>(() =>
     screenshots.map(() => false),
@@ -83,8 +81,6 @@ export function ScreenshotCarousel() {
             transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
             aria-hidden={i !== index}
           >
-            {/* Native img avoids next/image query-string edge cases on public assets */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={shot.src}
               alt={shot.alt}

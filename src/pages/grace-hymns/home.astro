@@ -1,0 +1,43 @@
+---
+import HeroSection from "@/components/grace-hymns/hero-section.astro";
+import HomeHeader from "@/components/grace-hymns/home-header.astro";
+import GraceHymnsLayout from "@/layouts/GraceHymnsLayout.astro";
+import { graceHymnsConfig, siteUrl } from "@/lib/site";
+
+const title = `${graceHymnsConfig.name} — A Modern Sanctuary for Devotion`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: graceHymnsConfig.name,
+  description: graceHymnsConfig.description,
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "iOS, Android",
+  url: `${siteUrl}/grace-hymns/home`,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+---
+
+<GraceHymnsLayout
+  title={title}
+  description={graceHymnsConfig.description}
+  canonical="/grace-hymns/home"
+  ogDescription={graceHymnsConfig.shortDescription}
+  keywords={[
+    "Grace Hymns",
+    "hymnbook app",
+    "hymns",
+    "Christian hymns",
+    "offline hymnbook",
+    "iOS",
+    "Android",
+  ]}
+>
+  <div class="flex min-h-dvh flex-col overflow-x-hidden md:h-dvh md:overflow-x-hidden md:overflow-y-auto">
+    <HomeHeader />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <main class="flex min-h-0 flex-1 items-center overflow-x-hidden overflow-y-auto md:overflow-y-auto">
+      <HeroSection />
+    </main>
+  </div>
+</GraceHymnsLayout>

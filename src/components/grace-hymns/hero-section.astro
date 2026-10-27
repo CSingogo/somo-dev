@@ -1,0 +1,45 @@
+---
+import { FileText, Zap } from "@lucide/astro";
+import { AppStoreButton, GooglePlayButton } from "@/components/base/buttons/app-store-buttons";
+import ScreenshotCarousel from "./screenshot-carousel.tsx";
+---
+
+<section class="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-8 sm:px-6 md:grid-cols-12 md:items-center md:gap-4 md:px-10 md:py-2 lg:gap-6 lg:px-16 lg:py-4">
+  <div class="md:col-span-5 lg:col-span-5">
+    <h1 class="mb-4 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-gh-on-background sm:mb-5 sm:text-4xl md:mb-5 md:text-[2.75rem] lg:mb-6 lg:text-5xl xl:text-6xl">
+      A Modern{" "}
+      <i class="font-normal italic text-gh-primary-container">
+        Sanctuary
+      </i>{" "}
+      for Devotion.
+    </h1>
+    <p class="mb-6 max-w-md text-sm font-light leading-relaxed text-gh-secondary sm:mb-7 sm:text-base md:mb-6 md:text-base lg:mb-8 lg:text-lg">
+      Engineering spiritual continuity through a high-fidelity hymnbook
+      experience. Built with technical precision for the believer.
+    </p>
+    <div class="gh-store-buttons mb-6 sm:mb-7 md:mb-6 lg:mb-8">
+      <GooglePlayButton size="lg" href="#" />
+      <AppStoreButton size="lg" href="#" />
+    </div>
+    <div class="grid max-w-md grid-cols-2 gap-x-6 gap-y-4 border-t border-gh-outline-variant pt-6 sm:gap-x-8 sm:pt-8 md:pt-6">
+      <div class="flex items-center gap-3">
+        <Zap class="h-5 w-5 shrink-0 text-gh-primary-container" stroke-width={1.5} />
+        <span class="text-[11px] font-semibold uppercase tracking-widest text-gh-secondary">
+          Offline Ready
+        </span>
+      </div>
+      <a
+        href="/grace-hymns/privacy-policy"
+        class="flex items-center gap-3 transition-colors hover:text-gh-primary-container"
+      >
+        <FileText class="h-5 w-5 shrink-0 text-gh-primary-container" stroke-width={1.5} />
+        <span class="text-[11px] font-semibold uppercase tracking-widest text-gh-secondary">
+          Privacy Policy
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="flex justify-center md:col-span-7 md:justify-end lg:col-span-7 lg:justify-center">
+    <ScreenshotCarousel client:load />
+  </div>
+</section>
