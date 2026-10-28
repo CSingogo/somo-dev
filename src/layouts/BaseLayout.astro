@@ -73,6 +73,7 @@ const canonicalUrl = new URL(canonical, siteUrl).href;
     <Font cssVariable="--font-geist-sans" />
     <Font cssVariable="--font-geist-mono" />
     <slot name="head" />
+  <noscript><style>[data-fade-content]{opacity:1!important}</style></noscript>
   </head>
   <body class="flex min-h-full flex-col">
     <slot />

@@ -14,7 +14,7 @@ Astro 7 is newer than most training data. Check `node_modules/astro/dist/types/p
 
 - `src/pages/` — routes. `build.format: "file"` + `trailingSlash: "never"`, so `grace-hymns/home.astro` builds to `/grace-hymns/home` with no trailing slash.
 - `src/layouts/` — `BaseLayout` (head, meta, theme script, fonts) and `GraceHymnsLayout`.
-- `src/components/` — `.astro` for anything static. React (`.tsx`) only as islands: theme toggle, screenshot carousel. Store badges in `base/buttons` are React rendered to static HTML with no client directive.
+- `src/components/` — `.astro` for anything static. React (`.tsx`) only as islands: theme toggle, screenshot carousel, and the `react-bits/` effects (`FadeContent`, `ClickSpark`; dependency-free reimplementations of the React Bits API). Store badges in `base/buttons` are React rendered to static HTML with no client directive.
 - `src/lib/site.ts` — site and app metadata. `src/lib/use-theme.ts` — next-themes-compatible hook for the toggle.
 - Fonts come from the Astro Fonts API (`fonts` in `astro.config.mjs`, `<Font />` in layouts).
 

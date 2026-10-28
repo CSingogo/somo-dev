@@ -1,11 +1,12 @@
 ---
 import { FileText, Zap } from "@lucide/astro";
 import { AppStoreButton, GooglePlayButton } from "@/components/base/buttons/app-store-buttons";
+import FadeContent from "@/components/react-bits/FadeContent.tsx";
 import ScreenshotCarousel from "./screenshot-carousel.tsx";
 ---
 
 <section class="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-8 sm:px-6 md:grid-cols-12 md:items-center md:gap-4 md:px-10 md:py-2 lg:gap-6 lg:px-16 lg:py-4">
-  <div class="md:col-span-5 lg:col-span-5">
+  <FadeContent client:load effect="mist" duration={1.8} ease="power2.out" stagger={0.1} threshold={0.1} className="md:col-span-5 lg:col-span-5">
     <h1 class="mb-4 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-gh-on-background sm:mb-5 sm:text-4xl md:mb-5 md:text-[2.75rem] lg:mb-6 lg:text-5xl xl:text-6xl">
       A Modern{" "}
       <i class="font-normal italic text-gh-primary-container">
@@ -38,7 +39,7 @@ import ScreenshotCarousel from "./screenshot-carousel.tsx";
         </span>
       </a>
     </div>
-  </div>
+  </FadeContent>
   <div class="flex justify-center md:col-span-7 md:justify-end lg:col-span-7 lg:justify-center">
     <ScreenshotCarousel client:load />
   </div>
