@@ -1,0 +1,19 @@
+<div
+  id="scroll-progress"
+  class="fixed left-0 top-0 z-[100] h-1 bg-gh-primary-container transition-all duration-300"
+  style="width: 0%"
+>
+</div>
+
+<script>
+  const bar = document.getElementById("scroll-progress");
+  const update = () => {
+    if (!bar) return;
+    const scrolled = document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    bar.style.width = `${height > 0 ? (scrolled / height) * 100 : 0}%`;
+  };
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+</script>

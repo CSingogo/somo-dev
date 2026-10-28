@@ -1,0 +1,37 @@
+---
+import { Font } from "astro:assets";
+import { graceHymnsConfig } from "@/lib/site";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  withOgImage?: boolean;
+  keywords?: string[];
+}
+
+const { withOgImage = true, ...rest } = Astro.props;
+
+const ogImage = {
+  url: "/og-grace-hymns.png",
+  width: 1024,
+  height: 1024,
+  alt: `${graceHymnsConfig.name} — A Modern Sanctuary for Devotion`,
+};
+---
+
+<BaseLayout {...rest} ogImage={withOgImage ? ogImage : undefined}>
+  <Fragment slot="head">
+    <Font cssVariable="--font-source-serif" />
+    <Font cssVariable="--font-work-sans" />
+    <Font cssVariable="--font-jetbrains-mono" />
+  </Fragment>
+  <div
+    class="grace-hymns-theme min-h-full bg-gh-background font-[family-name:var(--font-work-sans)] text-gh-on-background antialiased selection:bg-gh-primary/20 [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif"
+  >
+    <slot />
+  </div>
+</BaseLayout>

@@ -1,0 +1,78 @@
+---
+import { Font } from "astro:assets";
+import { siteConfig, siteUrl } from "@/lib/site";
+import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Path-only canonical, e.g. "/grace-hymns/home". */
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: { url: string; width: number; height: number; alt: string };
+  keywords?: string[];
+  noindex?: boolean;
+}
+
+const {
+  title = siteConfig.name,
+  description = siteConfig.description,
+  canonical = Astro.url.pathname,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage,
+  keywords,
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords.join(", ")} />}
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage.url, siteUrl).href} />}
+    {ogImage && <meta property="og:image:width" content={String(ogImage.width)} />}
+    {ogImage && <meta property="og:image:height" content={String(ogImage.height)} />}
+    {ogImage && <meta property="og:image:alt" content={ogImage.alt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    {ogImage && <meta name="twitter:image" content={new URL(ogImage.url, siteUrl).href} />}
+
+    <!-- Apply the saved theme before first paint (key matches the old next-themes "theme"). -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem("theme");
+        var dark =
+          t === "dark" ||
+          ((!t || t === "system") && matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    </script>
+
+    <Font cssVariable="--font-geist-sans" />
+    <Font cssVariable="--font-geist-mono" />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-full flex-col">
+    <slot />
+  </body>
+</html>
