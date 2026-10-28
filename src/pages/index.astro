@@ -6,15 +6,35 @@ import FadeContent from "@/components/react-bits/FadeContent.tsx";
 import GlideTooltips from "@/components/react-bits/GlideTooltips.tsx";
 import ThemeToggle from "@/components/grace-hymns/theme-toggle.tsx";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, siteUrl } from "@/lib/site";
 
 const iconClass =
   "h-5 w-5 text-gh-secondary transition-colors group-hover:text-gh-on-background";
 const linkClass = "group rounded-md p-2 outline-offset-2 focus-visible:outline-2 focus-visible:outline-gh-secondary";
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteUrl,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Chisomo Singogo",
+    url: siteUrl,
+    sameAs: [
+      "https://github.com/CSingogo",
+      "https://www.linkedin.com/in/chisomo-singogo-b52986a5/",
+      "https://x.com/thisischisomo",
+    ],
+  },
+];
 const external = { target: "_blank", rel: "noopener noreferrer" };
 ---
 
 <BaseLayout title={siteConfig.name} canonical="/">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <main class="grace-hymns-theme relative flex min-h-screen flex-col items-center justify-center gap-5 bg-gh-background px-6 text-center text-gh-on-background">
     <div class="absolute right-5 top-5">
       <ThemeToggle client:only="react">

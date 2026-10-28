@@ -21,12 +21,19 @@ const {
   canonical = Astro.url.pathname,
   ogTitle = title,
   ogDescription = description,
-  ogImage,
+  ogImage = {
+    url: "/og-default.png",
+    width: 1200,
+    height: 630,
+    alt: siteConfig.name,
+  },
   keywords,
   noindex = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, siteUrl).href;
+// Square images get cropped by summary_large_image; use the compact card for them.
+const twitterCard = ogImage.width === ogImage.height ? "summary" : "summary_large_image";
 ---
 
 <!doctype html>
@@ -38,7 +45,9 @@ const canonicalUrl = new URL(canonical, siteUrl).href;
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords.join(", ")} />}
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
-    <link rel="canonical" href={canonicalUrl} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
@@ -50,14 +59,14 @@ const canonicalUrl = new URL(canonical, siteUrl).href;
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
-    {ogImage && <meta property="og:image" content={new URL(ogImage.url, siteUrl).href} />}
-    {ogImage && <meta property="og:image:width" content={String(ogImage.width)} />}
-    {ogImage && <meta property="og:image:height" content={String(ogImage.height)} />}
-    {ogImage && <meta property="og:image:alt" content={ogImage.alt} />}
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image" content={new URL(ogImage.url, siteUrl).href} />
+    <meta property="og:image:width" content={String(ogImage.width)} />
+    <meta property="og:image:height" content={String(ogImage.height)} />
+    <meta property="og:image:alt" content={ogImage.alt} />
+    <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
-    {ogImage && <meta name="twitter:image" content={new URL(ogImage.url, siteUrl).href} />}
+    <meta name="twitter:image" content={new URL(ogImage.url, siteUrl).href} />
 
     <!-- Apply the saved theme before first paint (key matches the old next-themes "theme"). -->
     <script is:inline>
