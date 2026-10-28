@@ -9,6 +9,9 @@ export const siteConfig = {
 
 export const graceHymnsConfig = {
   name: "Grace Hymns",
+  // App Store id from eas.json (ascAppId); Play id from app.json (android.package).
+  appStoreUrl: "https://apps.apple.com/app/id6786683489",
+  playStoreUrl: "https://play.google.com/store/apps/details?id=com.singogosingogo.gracehymnsapp",
   shortDescription:
     "A modern hymnbook app for iOS and Android. Browse, search, and save hymns offline.",
   description:

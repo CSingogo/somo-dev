@@ -2,6 +2,7 @@
 import { FileText, Zap } from "@lucide/astro";
 import { AppStoreButton, GooglePlayButton } from "@/components/base/buttons/app-store-buttons";
 import FadeContent from "@/components/react-bits/FadeContent.tsx";
+import { graceHymnsConfig } from "@/lib/site";
 import ScreenshotCarousel from "./screenshot-carousel.tsx";
 ---
 
@@ -19,8 +20,8 @@ import ScreenshotCarousel from "./screenshot-carousel.tsx";
       experience. Built with technical precision for the believer.
     </p>
     <div class="gh-store-buttons mb-6 sm:mb-7 md:mb-6 lg:mb-8">
-      <GooglePlayButton size="lg" href="#" />
-      <AppStoreButton size="lg" href="#" />
+      <GooglePlayButton size="lg" href={graceHymnsConfig.playStoreUrl} target="_blank" rel="noopener noreferrer" />
+      <AppStoreButton size="lg" href={graceHymnsConfig.appStoreUrl} target="_blank" rel="noopener noreferrer" />
     </div>
     <div class="grid max-w-md grid-cols-2 gap-x-6 gap-y-4 border-t border-gh-outline-variant pt-6 sm:gap-x-8 sm:pt-8 md:pt-6">
       <div class="flex items-center gap-3">
