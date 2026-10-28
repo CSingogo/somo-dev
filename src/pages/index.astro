@@ -1,22 +1,31 @@
 ---
 import { ArrowRight } from "@lucide/astro";
 import { siX } from "simple-icons";
-import DarkVeilBackground from "@/components/dark-veil-background.tsx";
+import ThemeToggle from "@/components/grace-hymns/theme-toggle.tsx";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { siteConfig } from "@/lib/site";
 
 const iconClass =
-  "h-5 w-5 text-neutral-400 transition-colors group-hover:text-[#D97757]";
-const linkClass = "group rounded-md p-2 outline-offset-2 focus-visible:outline-2 focus-visible:outline-[#D97757]";
+  "h-5 w-5 text-gh-secondary transition-colors group-hover:text-gh-on-background";
+const linkClass = "group rounded-md p-2 outline-offset-2 focus-visible:outline-2 focus-visible:outline-gh-secondary";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 ---
 
 <BaseLayout title={siteConfig.name} canonical="/">
-  <main class="relative flex min-h-screen flex-col items-center justify-center gap-5 overflow-hidden px-6 text-center">
-    <DarkVeilBackground client:only="react" />
+  <main class="grace-hymns-theme relative flex min-h-screen flex-col items-center justify-center gap-5 bg-gh-background px-6 text-center text-gh-on-background">
+    <div class="absolute right-5 top-5">
+      <ThemeToggle client:only="react">
+        <button
+          slot="fallback"
+          type="button"
+          aria-label="Toggle theme"
+          class="flex size-9 items-center justify-center rounded-full border border-gh-outline-variant/60 dark:border-neutral-800"
+        ></button>
+      </ThemeToggle>
+    </div>
 
-    <h1 class="text-2xl tracking-tight text-white sm:text-3xl">
-      <span class="font-light">somo</span><span class="font-bold text-[#D97757]">singogo</span>
+    <h1 class="text-2xl tracking-tight sm:text-3xl">
+      <span class="font-light">somo</span><span class="font-bold">singogo</span>
     </h1>
 
     <nav aria-label="Links" class="flex items-center gap-2">
@@ -42,7 +51,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
 
     <a
       href="/grace-hymns/home"
-      class="group flex items-center gap-1.5 text-sm text-neutral-400 transition-colors hover:text-[#D97757]"
+      class="group flex items-center gap-1.5 text-sm text-gh-secondary transition-colors hover:text-gh-on-background"
     >
       Grace Hymns
       <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
