@@ -33,4 +33,6 @@ Push to `main` runs `.github/workflows/deploy.yml`: `bun install` → `bun run b
 
 `deploy/Caddyfile` is the source of truth for `/etc/caddy/Caddyfile` but CI does **not** install it. After editing it, install by hand (commands are in the file header). The slash-less URLs depend on its `try_files` rule.
 
+PWA: `public/manifest.webmanifest` and icons, plus `integrations/pwa.mjs`, which writes `dist/sw.js` from `src/pwa/sw.js` after each build with a precache list of every built file and a content hash. Pages are network-first, assets cache-first. The service worker is only registered in production builds.
+
 When replacing a screenshot in `public/ghs/`, bump `ASSET_VERSION` in `screenshot-carousel.tsx` to bust Cloudflare's cache.

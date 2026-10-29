@@ -3,6 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import pwa from "./integrations/pwa.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => !/\/grace-hymns\/?$/.test(page) && !page.endsWith("/404"),
     }),
+    pwa(),
   ],
   vite: { plugins: [tailwindcss()] },
   fonts: [
