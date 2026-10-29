@@ -1,5 +1,5 @@
 ---
-import { ArrowRight } from "@lucide/astro";
+import { ArrowRight, Mail } from "@lucide/astro";
 import { siX } from "simple-icons";
 import ThemedClickSpark from "@/components/react-bits/ThemedClickSpark.tsx";
 import FadeContent from "@/components/react-bits/FadeContent.tsx";
@@ -72,6 +72,9 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
         <svg class={iconClass} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d={siX.path}></path>
         </svg>
+      </a>
+      <a href="mailto:singogosingogo@gmail.com" aria-label="Email" data-tip="singogosingogo@gmail.com" class={linkClass}>
+        <Mail class={iconClass} stroke-width={1.75} aria-hidden="true" />
       </a>
     </nav>
     </ThemedClickSpark>
