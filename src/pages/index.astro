@@ -36,7 +36,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
 <BaseLayout title={siteConfig.name} canonical="/">
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <main class="grace-hymns-theme relative flex min-h-screen flex-col items-center justify-center gap-5 bg-gh-background px-6 text-center text-gh-on-background">
-    <div class="absolute right-5 top-5">
+    <div class="absolute right-[max(1.25rem,env(safe-area-inset-right))] top-[max(1.25rem,env(safe-area-inset-top))]">
       <ThemeToggle client:only="react">
         <button
           slot="fallback"

@@ -252,10 +252,16 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+  /* Plain white/black to match the pages, so overscroll and the area behind the
+     status bar (installed PWA, viewport-fit=cover) never show a different shade. */
   html {
     @apply font-sans;
+    background-color: #ffffff;
+  }
+  html.dark {
+    background-color: #000000;
+  }
+  body {
+    @apply text-foreground;
   }
 }
