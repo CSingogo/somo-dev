@@ -38,6 +38,12 @@ somosingogo.dev {
 
 gurl.somosingogo.dev {
 	encode zstd gzip
+	root * /var/www/gurl/site
+
+	@api path /get /post /put /patch /delete /anything /anything/* /headers /ip /user-agent /status/* /delay/* /bytes/* /redirect/* /basic-auth/* /json /gzip /install.sh /healthz
+	handle @api {
+		reverse_proxy 127.0.0.1:8088
+	}
 
 	# Static apt repository (added once the signing key exists).
 	handle /apt/* {
@@ -45,10 +51,16 @@ gurl.somosingogo.dev {
 		file_server
 	}
 
-	# Everything else is the Go server. Caddy forwards WebSocket upgrades
-	# automatically and adds X-Forwarded-For; Cloudflare's CF-Connecting-IP
-	# header passes through untouched.
+	# Everything else is the static Astro site.
 	handle {
-		reverse_proxy 127.0.0.1:8088
+		@hashed path /_astro/*
+		header @hashed Cache-Control "public, max-age=31536000, immutable"
+		try_files {path} {path}/index.html
+		file_server
+	}
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
 	}
 }
